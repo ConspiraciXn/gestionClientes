@@ -1,0 +1,165 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block contenido %}
+<h1 class="h3 mb-3"><strong>Modificar</strong> cliente</h1>
+
+<p class="text-danger fw-bold">{{mensaje}}</p>
+
+<div class="row">
+
+	<form action="{% url 'actualizarCliente' %}" method="POST">
+	{% csrf_token %} 
+
+	<div class="col-12 col-lg-12 col-xxl-12 d-flex">
+		<div class="card flex-fill">
+			<div class="card-header">
+				<h5 class="card-title mb-0">Datos del cliente</h5>
+			</div>
+			<div class="me-4 ms-4 mb-3">
+				<label class="form-label">Nombre</label>
+				<input type="text" value="{{cliente.nombre}}" name="txtNombre" minlength="5" maxlength="50" class="form-control" placeholder="Nombre del cliente" required>
+			</div>
+			<div class="me-4 ms-4 mb-3">
+				<input type="hidden" value="{{cliente.id}}" name="txtId" minlength="5" maxlength="50" class="form-control" placeholder="Nombre del cliente" required>
+			</div>
+			<div class="me-4 ms-4 mb-3">
+				<label class="form-label">RUT</label>
+				<input type="text" value="{{cliente.rut}}" name="txtRUT" minlength="11" maxlength="12" class="form-control" placeholder="12.345.678-0" required>
+			</div>
+			<div class="me-4 ms-4 mb-3">
+				<label class="form-label">Direccion</label>
+				<input type="text" value="{{cliente.direccion}}" name="txtDireccion" minlength="10" maxlength="50" class="form-control" placeholder="Dirección del cliente" required>
+			</div>
+			<div class="me-4 ms-4 mb-3">
+				<label class="form-label">Teléfono</label>
+				<input type="text" value="{{cliente.telefono}}" name="txtTelefono" minlength="13" maxlength="13" class="form-control" placeholder="+569 1234 1234" required>
+			</div>
+			<div class="me-4 ms-4 mb-3">
+				<label class="form-label">Comuna</label>
+				<select class="form-select" name="selComuna" required>
+					
+					{% for reg in comunas %}
+						{% if reg.nombre == cliente.Comuna.nombre %}
+                            <option selected>{{reg.nombre}}</option>
+                        {% else %}
+                            <option>{{reg.nombre}}</option>
+                        {% endif %}
+					{% endfor %}
+				</select>
+			</div>
+		</div>
+	</div>
+	<div class="col-12 col-lg-12 col-xxl-12 d-flex">
+		<div class="card flex-fill">
+			<div class="card-header">
+				<h5 class="card-title mb-0">Datos del servicio</h5>
+			</div>
+			<div class="me-4 ms-4 mb-3">
+				<label class="form-label">Servicio contratado</label>
+				<select class="form-select" name="selServicio" required>
+					{% for reg in servicios %}
+						{% if reg.nombre == cliente.servicioContratado %}
+                            <option selected>{{reg.nombre}}</option>
+                        {% else %}
+                            <option>{{reg.nombre}}</option>
+                        {% endif %}
+					{% endfor %}
+				</select>
+			</div>
+			<div class="me-4 ms-4 mb-3">
+				<label class="form-label">Tecnología servicio</label>
+				<select class="form-select" name="selTecnologia" required>
+					{% for reg in tecnologias %}
+						{% if reg.nombre == cliente.tecnologiaServicio %}
+                            <option selected>{{reg.nombre}}</option>
+                        {% else %}
+                            <option>{{reg.nombre}}</option>
+                        {% endif %}
+					{% endfor %}
+				</select>
+			</div>
+			<div class="me-4 ms-4 mb-3">
+				<label class="form-label">Plan contratado</label>
+				<select class="form-select" name="selPlan" required>
+					{% for reg in planes %}
+						{% if reg.nombre == cliente.planContratado %}
+                            <option selected>{{reg.nombre}}</option>
+                        {% else %}
+                            <option>{{reg.nombre}}</option>
+                        {% endif %}
+					{% endfor %}
+				</select>
+			</div>
+			<div class="me-4 ms-4 mb-3">
+				<label class="form-label">Cantidad decodificadores</label>
+				<select class="form-select" name="selDecos" required>
+					{% for reg in decos %}
+						{% if reg.nombre == cliente.cantidadDecos %}
+                            <option selected>{{reg.nombre}}</option>
+                        {% else %}
+                            <option>{{reg.nombre}}</option>
+                        {% endif %}
+					{% endfor %}
+				</select>
+			</div>
+		</div>
+	</div>
+	<div class="col-12 col-lg-12 col-xxl-12 d-flex">
+		<div class="card flex-fill">
+			<div class="card-header">
+				<h5 class="card-title mb-0">Datos de la instalación</h5>
+			</div>
+			<div class="me-4 ms-4 mb-3">
+				<label class="form-label">Fecha instalación</label>
+				<input type="date" value="{{cliente.fechaInstalacion}}" name="inpFecha" class="form-control" placeholder="Fecha de instalación" required>
+			</div>
+			<div class="me-4 ms-4 mb-3">
+				<label class="form-label">Costo instalación</label>
+				<input type="number" value="{{cliente.costoInstalacion}}" name="txtCostoInst" minlength="5" maxlength="5" class="form-control" placeholder="00000" required>
+			</div>
+			<div class="me-4 ms-4 mb-3">
+				<label class="form-label">Estado de la instalación</label required>
+				<select class="form-select" name="selEstado">
+					{% for reg in estados %}
+						{% if reg.nombre == cliente.estado %}
+                            <option selected>{{reg.nombre}}</option>
+                        {% else %}
+                            <option>{{reg.nombre}}</option>
+                        {% endif %}
+					{% endfor %}
+				</select>
+			</div>
+		</div>
+	</div>
+	<div class="col-12 col-lg-12 col-xxl-12 d-flex">
+		<div class="card flex-fill">
+			<div class="card-header">
+				<h5 class="card-title mb-0">Comentarios</h5>
+			</div>
+			<div class="me-4 ms-4 mb-3">
+				<textarea class="form-control" value="{{cliente.comentarios}}" name="txtComentarios" maxlength="300" rows="2" placeholder="Comentarios y observaciones">{{cliente.comentarios}}</textarea>
+			</div>
+		</div>
+	</div>
+
+	<div class="row">
+		<div class="col">
+			<div class="row">
+				<div class="col">
+					<div>
+						<div class="text-center mb-3 me-1 d-inline">
+							<button type="submit" class="btn btn-lg btn-success"><i data-feather="save"></i> Registrar</button>
+						</div>
+						<div class="text-center mb-3 d-inline">
+							<button type="reset" class="btn btn-lg btn-danger"><i data-feather="trash"></i> Limpiar</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	</form>
+</div>
+{% endblock contenido %}

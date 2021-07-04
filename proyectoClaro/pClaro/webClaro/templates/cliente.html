@@ -1,0 +1,93 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block contenido %}
+<h1 class="h3 mb-3"><strong>Cliente:</strong> {{cliente.nombre}}</h1>
+
+<p class="text-danger fw-bold">{{mensaje}}</p>
+
+<div class="row">
+		<div class="col">
+			<div class="row">
+				<div class="col mb-3">
+					<div>
+						<div class="text-center mb-3 me-1 d-inline">
+							<button type="submit" class="btn btn-lg btn-primary"><i data-feather="edit"></i> Modificar cliente</button>
+						</div>
+						<div class="text-center mb-3 d-inline">
+							<button type="reset" class="btn btn-lg btn-danger"><i data-feather="trash"></i> Eliminar cliente</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+<div class="row">
+	<div class="col-12 col-lg-12 col-xxl-12 d-flex">
+		<div class="card flex-fill">
+			<div class="card-header">
+
+				<h5 class="card-title mb-0">Detalles cliente</h5>
+			</div>
+			<table class="table table-hover my-0">
+				<tbody>
+					<tr>
+						<td class="fw-bold">Nombre</td>
+						<td>{{cliente.nombre}}</td>
+					</tr>
+					<tr>
+						<td class="fw-bold">RUT</td>
+						<td>{{cliente.rut}}</td>
+					</tr>
+					<tr>
+						<td class="fw-bold">Dirección</td>
+						<td>{{cliente.direccion}}</td>
+					</tr>
+					<tr>
+						<td class="fw-bold">Comuna</td>
+						<td>{{cliente.Comuna.nombre}}</td>
+					</tr>
+					<tr>
+						<td class="fw-bold">Teléfono</td>
+						<td><a href="https://wa.me/{{whatsapp}}" target="_blank"><i data-feather="message-circle"></i> +{{cliente.telefono}}</a></td>
+					</tr>
+					<tr>
+						<td class="fw-bold">Servicio contratado</td>
+						<td>{{cliente.servicioTecnologia}}</td>
+					</tr>
+					<tr>
+						<td class="fw-bold">Plan contratado</td>
+						<td>{{cliente.planContratado}}</td>
+					</tr>
+					<tr>
+						<td class="fw-bold">Cantidad decodificadores</td>
+						<td>{{cliente.cantidadDecos}}</td>
+					</tr>
+					<tr>
+						<td class="fw-bold">Costo instalación</td>
+						<td>${{cliente.costoInstalacion}}</td>
+					</tr>
+					<tr>
+						<td class="fw-bold">Fecha instalación</td>
+						<td>{{cliente.fechaInstalacion}}</td>
+					</tr>
+					<tr>
+						<td class="fw-bold">Vendedor</td>
+						<td>{{cliente.vendedor}} (usuario web)</td>
+					</tr>
+					<tr>
+						<td class="fw-bold">Estado de la venta</td>
+						<td><span class="badge rounded-pill {% if cliente.estado == "Instalado"  %}bg-success">{% endif %}{% if cliente.estado == "Otro"  %}bg-primary">{% endif %}{% if cliente.estado == "Pendiente"  %}bg-warning">{% endif %}{% if cliente.estado == "Cancelado"  %}bg-danger">{% endif %}{{cliente.estado}}</td>
+					</tr>
+					<tr>
+						<td class="fw-bold">Comentarios / Observaciones</td>
+						<td>{{cliente.comentarios}}</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+
+</div>
+{% endblock contenido %}

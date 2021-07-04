@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block contenido %}
+<div class="mb-3">
+	<h1 class="h3 d-inline align-middle">Perfil</h1>
+</div>
+<div class="row">
+	<div class="col-md-4 col-xl-3">
+		<div class="card mb-3">
+			<div class="card-header">
+				<h5 class="card-title mb-0">Detalles del perfil</h5>
+			</div>
+			<div class="card-body text-center">
+				{% for reg in img %}<img src="{{reg.imagen.url}}" class="img-fluid rounded-circle mb-2" width="128" height="128" />{% endfor %}
+				<h5 class="card-title mb-0 mt-2 fs-4">{{user.first_name}} {{user.last_name}}</h5>
+			</div>
+			<hr class="my-0" />
+			<div class="card-body">
+				<h5 class="h6 card-title">Reconocimientos</h5>
+				<a href="#" class="badge bg-primary me-1 my-1">Primer usuario</a>
+			</div>
+		</div>
+	</div>
+
+	<div class="col-md-8 col-xl-9">
+		<div class="card">
+			<div class="card-header">
+
+				<h5 class="card-title mb-0">Configuración</h5>
+			</div>
+			<div class="card-body h-100">
+				<!-- Ingresar contenido. -->
+			</div>
+		</div>
+	</div>
+</div>
+{% endblock contenido %}
