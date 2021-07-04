@@ -10,13 +10,13 @@
 		<div class="col">
 			<div class="row">
 				<div class="col mb-3">
-					<div>
-						<div class="text-center mb-3 me-1 d-inline">
-							<a class="btn btn-lg btn-primary" href="/modificarCliente/{{cliente.id}}"><i data-feather="edit"></i> Modificar cliente</a>
-						</div>
-						<div class="text-center mb-3 d-inline">
-							<button class="btn btn-lg btn-danger" type="button" onclick="eliminarCliente('{{cliente.id}}', '{{cliente.nombre}}')"><i data-feather="trash"></i> Eliminar cliente</button>
-						</div>
+					<div class="text-center mb-3 me-1">
+						<a class="btn btn-lg btn-primary" href="/modificarCliente/{{cliente.id}}"><i data-feather="edit"></i> Modificar cliente</a>
+					</div>
+				</div>
+				<div class="col mb-3">
+					<div class="text-center mb-3">
+						<button class="btn btn-lg btn-danger" type="button" onclick="eliminarCliente('{{cliente.id}}', '{{cliente.nombre}}')"><i data-feather="trash"></i> Eliminar cliente</button>
 					</div>
 				</div>
 			</div>
