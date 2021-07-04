@@ -23,6 +23,9 @@
 	<link rel="shortcut icon" href="{% static 'img/icons/icon-48x48.png' %}" />
 	<link href="{% static 'css/app.css' %}" rel="stylesheet">
 	<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+
+	<!-- sweetalert -->
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 	{% block linksCSS %}
 
 	{% endblock linksCSS %}
@@ -54,6 +57,15 @@
             			</a>
 					</li>
 
+					<!-- Elementos sección Enlaces -->
+					<li class="sidebar-header">Oficial</li>
+
+					<li class="sidebar-item">
+						<a class="sidebar-link" href="{% url 'actualizaciones' %}">
+							<i class="align-middle" data-feather="refresh-cw"></i>
+							<span class="align-middle">Actualizaciones</span>
+            			</a>
+					</li>
 				</ul>
 			</div>
 		</nav>

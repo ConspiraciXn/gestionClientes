@@ -12,10 +12,10 @@
 				<div class="col mb-3">
 					<div>
 						<div class="text-center mb-3 me-1 d-inline">
-							<button type="submit" class="btn btn-lg btn-primary"><i data-feather="edit"></i> Modificar cliente</button>
+							<a class="btn btn-lg btn-primary" href="/modificarCliente/{{cliente.id}}"><i data-feather="edit"></i> Modificar cliente</a>
 						</div>
 						<div class="text-center mb-3 d-inline">
-							<button type="reset" class="btn btn-lg btn-danger"><i data-feather="trash"></i> Eliminar cliente</button>
+							<button class="btn btn-lg btn-danger" type="button" onclick="eliminarCliente('{{cliente.id}}', '{{cliente.nombre}}')"><i data-feather="trash"></i> Eliminar cliente</button>
 						</div>
 					</div>
 				</div>
@@ -91,3 +91,23 @@
 
 </div>
 {% endblock contenido %}
+
+{% block js %}
+  <script>
+    function eliminarCliente(id, nombre) {
+      Swal.fire({
+        title: '¿Estás seguro de eliminar el cliente ' + nombre + '?',
+        text: "No podrás revertir este cambio",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Sí, eliminar'
+      }).then((result) => {
+        if (result.isConfirmed) {
+          location.href='/eliminarCliente/'+id+'/';
+        }
+      })
+    }
+  </script>
+{% endblock js %}

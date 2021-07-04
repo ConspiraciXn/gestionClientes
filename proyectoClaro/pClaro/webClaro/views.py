@@ -161,7 +161,7 @@ def modificarCliente(request, id):
 
     return render(request, "index.html", {"img": img, "clientes":clientes, "cantClientes":contadorClientes, "cantDecos":contadorDecos, "cantBafis":contadorBafis, "mensaje":mensaje})
 
-
+@login_required(login_url='/login/')
 def actualizarCliente(request):
     mensaje = ''
 
@@ -225,3 +225,39 @@ def actualizarCliente(request):
     contadorBafis = clientes.filter(servicioContratado__contains = "BAFI").count()
 
     return render(request, "index.html", {"img": img, "clientes":clientes, "cantClientes":contadorClientes, "cantDecos":contadorDecos, "cantBafis":contadorBafis, "mensaje":mensaje})
+
+@login_required(login_url='/login/')
+def eliminarCliente(request, id):
+    mensaje = ''
+    try:
+        cliente = Cliente.objects.get(id = id)
+        cliente.delete()
+        mensaje = "Cliente eliminado correctamente!"
+    except:
+        mensaje = "No existe el cliente."
+
+    # Método ir a Index.
+    img = ImagenPerfil.objects.filter(usuario = request.user.username)
+    clientes = Cliente.objects.filter(vendedor = request.user.username).order_by('-fechaInstalacion')
+    contadorClientes = Cliente.objects.filter(vendedor = request.user.username).count()
+    deco1 = clientes.filter(cantidadDecos = 1).count()
+    deco2 = clientes.filter(cantidadDecos = 2).count()
+    deco3 = clientes.filter(cantidadDecos = 3).count()
+    deco4 = clientes.filter(cantidadDecos = 4).count()
+    contadorDecos = deco1 + (deco2 * 2) + (deco3 * 3) + (deco4 * 4)
+    contadorBafis = clientes.filter(servicioContratado__contains = "BAFI").count()
+
+    return render(request, "index.html", {"img": img, "clientes":clientes, "cantClientes":contadorClientes, "cantDecos":contadorDecos, "cantBafis":contadorBafis, "mensaje":mensaje})
+
+@login_required(login_url='/login/')
+def actualizaciones(request):
+    img = ImagenPerfil.objects.filter(usuario = request.user.username)
+    return render(request, "actualizaciones.html", {"img": img})
+ 
+
+
+
+
+
+
+

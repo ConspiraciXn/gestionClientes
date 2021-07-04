@@ -5,15 +5,12 @@
 	
 PENDIENTES
 
-  [*] Crear funciones de modificar en ficha cliente. 
-  [ ] Crear funciones de eliminar cliente en ficha cliente.
-  [*] Crear página de perfil.
   [ ] Implementar funciones en página de perfil: cambiar imagen de perfil, constantes de valores, etc.
-  [*] Crear enlaces usuario logueado: enlace cerrar sesión.
   [ ] Idear sistema de reconocimientos.
   [ ] Crear sistema de filtros en búsqueda de clientes index.
-  [*] Añadir sección de estadísticas a index.
   [ ] Formulario modificacion cliente reparar comentarios y fecha.
+  [ ] Formulario registro cliente formato RUT, teléfono automáticos.
+  [ ] Poblar tabla de comunas.
 
  -->
 
@@ -138,8 +135,7 @@ PENDIENTES
 						<td class="d-none d-md-table-cell">{{reg.Comuna.nombre}}</span></td>
 						<td><span class="badge rounded-pill {% if reg.estado == "Instalado"  %}bg-success">{% endif %}{% if reg.estado == "Otro"  %}bg-primary">{% endif %}{% if reg.estado == "Pendiente"  %}bg-warning">{% endif %}{% if reg.estado == "Cancelado"  %}bg-danger">{% endif %}{{reg.estado}}</td>
 						<td>
-							<a class="btn btn-primary" href="/cliente/{{reg.id}}"><i data-feather="eye"></i></a>
-							<a class="btn btn-secondary" href="/modificarCliente/{{reg.id}}"><i data-feather="edit"></i></a>
+							<a class="btn btn-primary" href="/cliente/{{reg.id}}"><i data-feather="eye"></i> Ver ficha</a>
 						</td>
 					</tr>
 					{% endfor %}					

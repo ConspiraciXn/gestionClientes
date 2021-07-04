@@ -16,6 +16,8 @@ urlpatterns = [
     path('cerrarSesion/', views.cerrarSesion, name='cerrarSesion'),
     path('modificarCliente/<id>/', views.modificarCliente, name='modificarCliente'),
     path('actualizarCliente/', views.actualizarCliente, name='actualizarCliente'),
+    path('eliminarCliente/<id>/', views.eliminarCliente, name='eliminarCliente'),
+    path('actualizaciones/', views.actualizaciones, name='actualizaciones'),
 ]
 
 # Incluir rutas estáticas.

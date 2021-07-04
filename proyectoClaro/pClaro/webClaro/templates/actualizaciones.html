@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block contenido %}
+<div class="mb-3">
+	<h1 class="h3 d-inline align-middle">Actualizaciones</h1>
+</div>
+<div class="row">
+	<div class="col-12">
+		<div class="card">
+			<div class="card-header">
+				<h5 class="card-title mb-0">Versión 1.0.1 - 04/07/2021 - 16:26</h5>
+			</div>
+			<div class="card-body h-100">
+				<ul>
+					<li>Se crea página de actualizaciones para informe de novedades, cambios y arreglo de bugs.</li>
+					<li>En tabla de clientes ahora sólo aparece la operación de "ver ficha".</li>
+					<li>Se crea botón para modificar cliente dentro en ficha de un cliente.</li>
+					<li>Se crea botón para eliminar cliente con confirmación dentro en ficha de un cliente.</li>
+					<li>Se elimina BAFI 50 GB de lista de planes y servicios contratados.</li>
+				</ul>
+			</div>
+		</div>
+
+		<div class="card">
+			<div class="card-header">
+				<h5 class="card-title mb-0">Versión 1.0 - 04/07/2021 - 15:26</h5>
+			</div>
+			<div class="card-body h-100">
+				<ul>
+					<li>Carga de app a sitio web.</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+</div>
+{% endblock contenido %}
