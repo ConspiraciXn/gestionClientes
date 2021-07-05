@@ -1,6 +1,6 @@
 from django.contrib import admin
 from .models import Cliente, Comuna, ImagenPerfil, ServicioContratado, TecnologiaServicio
-from .models import EstadoInstalacion, PlanContratado, CantidadDecodificadores 
+from .models import EstadoInstalacion, PlanContratado, CantidadDecodificadores, ComunasSexta, ComunasMetropolitana
 
 # Register your models here.
 admin.site.register(Cliente)
@@ -11,3 +11,5 @@ admin.site.register(TecnologiaServicio)
 admin.site.register(PlanContratado)
 admin.site.register(CantidadDecodificadores)
 admin.site.register(EstadoInstalacion)
+admin.site.register(ComunasSexta)
+admin.site.register(ComunasMetropolitana)

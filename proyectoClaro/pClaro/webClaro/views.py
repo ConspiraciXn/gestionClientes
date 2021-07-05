@@ -1,5 +1,5 @@
-from webClaro.models import Cliente, Comuna, ImagenPerfil, TecnologiaServicio, ServicioContratado, PlanContratado
-from webClaro.models import CantidadDecodificadores, EstadoInstalacion
+from webClaro.models import Cliente, ImagenPerfil, TecnologiaServicio, ServicioContratado, PlanContratado
+from webClaro.models import CantidadDecodificadores, EstadoInstalacion, ComunasMetropolitana, ComunasSexta
 from django.shortcuts import render
 
 
@@ -73,7 +73,7 @@ def registroCliente(request):
 
     if request.POST:
         nombre = request.POST.get("txtNombre")
-        rut = request.POST.get("txtRUT")
+        rut = request.POST.get("rut")
         direccion = request.POST.get("txtDireccion")
         telefono = request.POST.get("txtTelefono")
         servicio = request.POST.get("selServicio")
@@ -87,7 +87,6 @@ def registroCliente(request):
         estado = request.POST.get("selEstado")
         comentarios = request.POST.get("txtComentarios")
         comuna = request.POST.get("selComuna")
-        objComuna = Comuna.objects.get(nombre = comuna)
         
         cliente = Cliente()
         cliente.nombre = nombre
@@ -103,7 +102,7 @@ def registroCliente(request):
         cliente.vendedor = vendedor
         cliente.servicioTecnologia = servTecn
         cliente.estado = estado
-        cliente.Comuna = objComuna
+        cliente.Comuna = comuna
 
         if comentarios is not None:
             cliente.comentarios = comentarios
@@ -114,14 +113,15 @@ def registroCliente(request):
         mensaje = "Cliente registrado exitosamente."
 
     img = ImagenPerfil.objects.filter(usuario = request.user.username)
-    objComuna = Comuna.objects.all()
+    objComunasSexta = ComunasSexta.objects.all()
+    objComunasMetropolitana = ComunasMetropolitana.objects.all()
     objServicioContratado = ServicioContratado.objects.all()
     objTecnologiaServicio = TecnologiaServicio.objects.all()
     objPlanContratado = PlanContratado.objects.all()
     objCantidadDecodificadores = CantidadDecodificadores.objects.all()
     objEstadoInstalacion = EstadoInstalacion.objects.all()
 
-    return render(request, "registroCliente.html", {"img": img, "comunas":objComuna, "mensaje":mensaje, "servicios":objServicioContratado, "tecnologias":objTecnologiaServicio, "planes":objPlanContratado, "decos":objCantidadDecodificadores, "estados":objEstadoInstalacion})
+    return render(request, "registroCliente.html", {"img": img, "comunasSexta":objComunasSexta, "comunasMetropolitana":objComunasMetropolitana, "mensaje":mensaje, "servicios":objServicioContratado, "tecnologias":objTecnologiaServicio, "planes":objPlanContratado, "decos":objCantidadDecodificadores, "estados":objEstadoInstalacion})
 
 @login_required(login_url='/login/')
 def perfil(request):
@@ -141,13 +141,14 @@ def modificarCliente(request, id):
     try:
         cliente = Cliente.objects.get(id = id)
         img = ImagenPerfil.objects.filter(usuario = request.user.username)
-        objComuna = Comuna.objects.all()
+        objComunasSexta = ComunasSexta.objects.all()
+        objComunasMetropolitana = ComunasMetropolitana.objects.all()
         objServicioContratado = ServicioContratado.objects.all()
         objTecnologiaServicio = TecnologiaServicio.objects.all()
         objPlanContratado = PlanContratado.objects.all()
         objCantidadDecodificadores = CantidadDecodificadores.objects.all()
         objEstadoInstalacion = EstadoInstalacion.objects.all()
-        return render(request, "modifCliente.html", {"img": img, "comunas":objComuna, "cliente":cliente, "servicios":objServicioContratado, "tecnologias":objTecnologiaServicio, "planes":objPlanContratado, "decos":objCantidadDecodificadores, "estados":objEstadoInstalacion})
+        return render(request, "modifCliente.html", {"img": img, "comunasSexta":objComunasSexta, "comunasMetropolitana":objComunasMetropolitana, "cliente":cliente, "servicios":objServicioContratado, "tecnologias":objTecnologiaServicio, "planes":objPlanContratado, "cantDecos":objCantidadDecodificadores, "estados":objEstadoInstalacion})
 
     except Exception as e:
         mensaje = "No existe el cliente."
@@ -173,7 +174,7 @@ def actualizarCliente(request):
     if request.POST:
         id = request.POST.get("txtId")
         nombre = request.POST.get("txtNombre")
-        rut = request.POST.get("txtRUT")
+        rut = request.POST.get("rut")
         direccion = request.POST.get("txtDireccion")
         telefono = request.POST.get("txtTelefono")
         servicio = request.POST.get("selServicio")
@@ -187,7 +188,6 @@ def actualizarCliente(request):
         estado = request.POST.get("selEstado")
         comentarios = request.POST.get("txtComentarios")
         comuna = request.POST.get("selComuna")
-        objComuna = Comuna.objects.get(nombre = comuna)
         
         cliente = Cliente.objects.get(id = id)
 
@@ -205,7 +205,7 @@ def actualizarCliente(request):
             cliente.vendedor = vendedor
             cliente.servicioTecnologia = servTecn
             cliente.estado = estado
-            cliente.Comuna = objComuna
+            cliente.Comuna = comuna
 
             if comentarios is not None:
                 cliente.comentarios = comentarios

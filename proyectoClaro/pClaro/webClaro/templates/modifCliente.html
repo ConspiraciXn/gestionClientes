@@ -1,6 +1,10 @@
 {% extends "base.html" %}
 {% load static %}
 
+{% block linksCSS %}
+<script src="{% static 'js/jquery.rut.js' %}"></script>
+{% endblock linksCSS %}
+
 {% block contenido %}
 <h1 class="h3 mb-3"><strong>Modificar</strong> cliente</h1>
 
@@ -25,7 +29,7 @@
 			</div>
 			<div class="me-4 ms-4 mb-3">
 				<label class="form-label">RUT</label>
-				<input type="text" value="{{cliente.rut}}" name="txtRUT" minlength="11" maxlength="12" class="form-control" placeholder="12.345.678-0" required>
+				<input type="text" id="rut" value="{{cliente.rut}}" name="rut" minlength="11" maxlength="12" class="form-control" placeholder="12.345.678-0" required>
 			</div>
 			<div class="me-4 ms-4 mb-3">
 				<label class="form-label">Direccion</label>
@@ -33,19 +37,32 @@
 			</div>
 			<div class="me-4 ms-4 mb-3">
 				<label class="form-label">Teléfono</label>
-				<input type="text" value="{{cliente.telefono}}" name="txtTelefono" minlength="13" maxlength="13" class="form-control" placeholder="+569 1234 1234" required>
+				<input type="text" pattern="[0-9]{3} [0-9]{4} [0-9]{4}" value="{{cliente.telefono}}" name="txtTelefono" minlength="13" maxlength="13" class="form-control" placeholder="+569 1234 1234" required>
 			</div>
 			<div class="me-4 ms-4 mb-3">
 				<label class="form-label">Comuna</label>
 				<select class="form-select" name="selComuna" required>
 					
-					{% for reg in comunas %}
-						{% if reg.nombre == cliente.Comuna.nombre %}
+					<optgroup label="Sexta región">
+					{% for reg in comunasSexta %}
+						{% if reg.nombre == cliente.Comuna %}
                             <option selected>{{reg.nombre}}</option>
                         {% else %}
                             <option>{{reg.nombre}}</option>
                         {% endif %}
 					{% endfor %}
+					</optgroup>
+
+					<optgroup label="Región Metropolitana">
+					{% for reg in comunasMetropolitana %}
+						{% if reg.nombre == cliente.Comuna %}
+                            <option selected>{{reg.nombre}}</option>
+                        {% else %}
+                            <option>{{reg.nombre}}</option>
+                        {% endif %}
+					{% endfor %}
+					</optgroup>
+
 				</select>
 			</div>
 		</div>
@@ -94,7 +111,7 @@
 			<div class="me-4 ms-4 mb-3">
 				<label class="form-label">Cantidad decodificadores</label>
 				<select class="form-select" name="selDecos" required>
-					{% for reg in decos %}
+					{% for reg in cantDecos %}
 						{% if reg.nombre == cliente.cantidadDecos %}
                             <option selected>{{reg.nombre}}</option>
                         {% else %}
@@ -151,9 +168,6 @@
 						<div class="text-center mb-3 me-1 d-inline">
 							<button type="submit" class="btn btn-lg btn-success"><i data-feather="save"></i> Registrar</button>
 						</div>
-						<div class="text-center mb-3 d-inline">
-							<button type="reset" class="btn btn-lg btn-danger"><i data-feather="trash"></i> Limpiar</button>
-						</div>
 					</div>
 				</div>
 			</div>
@@ -163,3 +177,9 @@
 	</form>
 </div>
 {% endblock contenido %}
+
+{% block js %}
+<script>
+	$("input#rut").rut();
+</script>
+{% endblock js %}

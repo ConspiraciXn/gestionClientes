@@ -9,8 +9,8 @@ PENDIENTES
   [ ] Idear sistema de reconocimientos.
   [ ] Crear sistema de filtros en búsqueda de clientes index.
   [ ] Formulario modificacion cliente reparar comentarios y fecha.
-  [ ] Formulario registro cliente formato RUT, teléfono automáticos.
-  [ ] Poblar tabla de comunas.
+  [ ] Crear sistema de cálculo de comisiones.
+  [ ] Añadir opción de subir contrato a cliente.
 
  -->
 
@@ -132,7 +132,7 @@ PENDIENTES
 						<td>{{reg.nombre}}</td>
 						<td class="d-none d-xl-table-cell">{{reg.rut}}</td>
 						<td class="d-none d-xl-table-cell">{{reg.servicioTecnologia}}</td>
-						<td class="d-none d-md-table-cell">{{reg.Comuna.nombre}}</span></td>
+						<td class="d-none d-md-table-cell">{{reg.Comuna}}</span></td>
 						<td><span class="badge rounded-pill {% if reg.estado == "Instalado"  %}bg-success">{% endif %}{% if reg.estado == "Otro"  %}bg-primary">{% endif %}{% if reg.estado == "Pendiente"  %}bg-warning">{% endif %}{% if reg.estado == "Cancelado"  %}bg-danger">{% endif %}{{reg.estado}}</td>
 						<td>
 							<a class="btn btn-primary" href="/cliente/{{reg.id}}"><i data-feather="eye"></i> Ver ficha</a>

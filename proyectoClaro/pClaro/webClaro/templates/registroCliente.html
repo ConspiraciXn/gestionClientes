@@ -1,6 +1,10 @@
 {% extends "base.html" %}
 {% load static %}
 
+{% block linksCSS %}
+<script src="{% static 'js/jquery.rut.js' %}"></script>
+{% endblock linksCSS %}
+
 {% block contenido %}
 <h1 class="h3 mb-3"><strong>Registro</strong> de nuevo cliente</h1>
 
@@ -22,7 +26,7 @@
 			</div>
 			<div class="me-4 ms-4 mb-3">
 				<label class="form-label">RUT</label>
-				<input type="text" name="txtRUT" minlength="11" maxlength="12" class="form-control" placeholder="12.345.678-0" required>
+				<input type="text" id="rut" name="rut" minlength="11" maxlength="12" class="form-control" placeholder="12.345.678-0" required>
 			</div>
 			<div class="me-4 ms-4 mb-3">
 				<label class="form-label">Direccion</label>
@@ -30,15 +34,24 @@
 			</div>
 			<div class="me-4 ms-4 mb-3">
 				<label class="form-label">Teléfono</label>
-				<input type="text" name="txtTelefono" minlength="13" maxlength="13" class="form-control" placeholder="569 1234 1234" required>
+				<input type="tel" pattern="[0-9]{3} [0-9]{4} [0-9]{4}" name="txtTelefono" minlength="13" maxlength="13" class="form-control" placeholder="569 1234 1234" required>
 			</div>
 			<div class="me-4 ms-4 mb-3">
 				<label class="form-label">Comuna</label>
 				<select class="form-select" name="selComuna" required>
-					
-					{% for reg in comunas %}
-					<option>{{reg.nombre}}</option>
+				
+					<optgroup label="Sexta región">
+					{% for reg in comunasSexta %}
+						<option>{{reg.nombre}}</option>
 					{% endfor %}
+					</optgroup>
+
+					<optgroup label="Región Metropolitana">
+					{% for reg in comunasMetropolitana %}
+						<option>{{reg.nombre}}</option>
+					{% endfor %}
+					</optgroup>
+
 				</select>
 			</div>
 		</div>
@@ -136,3 +149,9 @@
 	</form>
 </div>
 {% endblock contenido %}
+
+{% block js %}
+<script>
+	$("input#rut").rut();
+</script>
+{% endblock js %}

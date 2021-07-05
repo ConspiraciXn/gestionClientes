@@ -12,6 +12,20 @@ class Comuna(models.Model):
     def __str__(self):
         return self.nombre
 
+class ComunasSexta(models.Model):
+    id = models.AutoField(primary_key=True)
+    nombre = models.CharField(max_length=30)
+
+    def __str__(self):
+        return self.nombre
+
+class ComunasMetropolitana(models.Model):
+    id = models.AutoField(primary_key=True)
+    nombre = models.CharField(max_length=30)
+
+    def __str__(self):
+        return self.nombre
+
 class Cliente(models.Model):
     id = models.AutoField(primary_key=True)
     nombre = models.CharField(max_length=50)
@@ -21,13 +35,13 @@ class Cliente(models.Model):
     servicioContratado = models.CharField(max_length=20)
     tecnologiaServicio = models.CharField(max_length=4)
     planContratado = models.CharField(max_length=30)
-    cantidadDecos = models.IntegerField()
+    cantidadDecos = models.CharField(max_length=1)
     costoInstalacion = models.IntegerField()
     fechaInstalacion = models.DateField()
     vendedor = models.CharField(max_length=20)
     servicioTecnologia = models.CharField(max_length=20)
     estado = models.CharField(max_length=20)
-    Comuna = ForeignKey(Comuna, on_delete=models.CASCADE)
+    Comuna = models.CharField(max_length=40)
     comentarios = models.CharField(max_length=300)
 
     def __str__(self):
