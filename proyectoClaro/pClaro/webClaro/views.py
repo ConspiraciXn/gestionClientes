@@ -115,8 +115,13 @@ def registroCliente(request):
 
     img = ImagenPerfil.objects.filter(usuario = request.user.username)
     objComuna = Comuna.objects.all()
+    objServicioContratado = ServicioContratado.objects.all()
+    objTecnologiaServicio = TecnologiaServicio.objects.all()
+    objPlanContratado = PlanContratado.objects.all()
+    objCantidadDecodificadores = CantidadDecodificadores.objects.all()
+    objEstadoInstalacion = EstadoInstalacion.objects.all()
 
-    return render(request, "registroCliente.html", {"img": img, "comunas":objComuna, "mensaje":mensaje})
+    return render(request, "registroCliente.html", {"img": img, "comunas":objComuna, "mensaje":mensaje, "servicios":objServicioContratado, "tecnologias":objTecnologiaServicio, "planes":objPlanContratado, "decos":objCantidadDecodificadores, "estados":objEstadoInstalacion})
 
 @login_required(login_url='/login/')
 def perfil(request):

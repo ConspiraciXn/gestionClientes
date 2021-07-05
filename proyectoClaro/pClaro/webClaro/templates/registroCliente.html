@@ -51,56 +51,33 @@
 			<div class="me-4 ms-4 mb-3">
 				<label class="form-label">Servicio contratado</label>
 				<select class="form-select" name="selServicio" required>
-					<option>TV</option>
-					<option>Internet</option>
-					<option>Telefonía</option>
-					<option>TV + Internet</option>
-					<option>TV + Telefonía</option>
-					<option>TV + Internet + Telefonía</option>
-					<option>Otro</option>
+					{% for reg in servicios %}
+                        <option>{{reg.nombre}}</option>
+					{% endfor %}
 				</select>
 			</div>
 			<div class="me-4 ms-4 mb-3">
 				<label class="form-label">Tecnología servicio</label>
 				<select class="form-select" name="selTecnologia" required>
-					<option>DTH</option>
-					<option>BAFI</option>
-					<option>TFI</option>
-					<option>HFC</option>
-					<option>DTH + TFI</option>
-					<option>DTH + BAFI</option>
-					<option>Otro</option>
+					{% for reg in tecnologias %}
+                        <option>{{reg.nombre}}</option>
+					{% endfor %}
 				</select>
 			</div>
 			<div class="me-4 ms-4 mb-3">
 				<label class="form-label">Plan contratado</label>
 				<select class="form-select" name="selPlan" required>
-					<option>Pro HD</option>
-					<option>Pro HD Más</option>
-					<option>Pro HD Fútbol</option>
-					<option>BAFI 50 GB</option>
-					<option>BAFI 100 GB</option>
-					<option>TFI 300 MINUTOS</option>
-					<option>Pro HD + BAFI 50 GB</option>
-					<option>Pro HD + BAFI 100 GB</option>
-					<option>Pro HD + TFI 300 MINUTOS</option>
-					<option>Pro HD Más + BAFI 50 GB</option>
-					<option>Pro HD Más + BAFI 100 GB</option>
-					<option>Pro HD Más + TFI 300 MINUTOS</option>
-					<option>Pro HD Fútbol + BAFI 50 GB</option>
-					<option>Pro HD Fútbol + BAFI 100 GB</option>
-					<option>Pro HD Fútbol + TFI 300 MINUTOS</option>
-					<option>Otro</option>
+					{% for reg in planes %}
+                        <option>{{reg.nombre}}</option>
+					{% endfor %}
 				</select>
 			</div>
 			<div class="me-4 ms-4 mb-3">
 				<label class="form-label">Cantidad decodificadores</label>
 				<select class="form-select" name="selDecos" required>
-					<option>0</option>
-					<option>1</option>
-					<option>2</option>
-					<option>3</option>
-					<option>4</option>
+					{% for reg in decos %}
+                        <option>{{reg.nombre}}</option>
+					{% endfor %}
 				</select>
 			</div>
 		</div>
@@ -121,9 +98,9 @@
 			<div class="me-4 ms-4 mb-3">
 				<label class="form-label">Estado de la instalación</label required>
 				<select class="form-select" name="selEstado">
-					<option>Pendiente</option>
-					<option>Instalado</option>
-					<option>Otro</option>
+					{% for reg in estados %}
+                        <option>{{reg.nombre}}</option>
+					{% endfor %}
 				</select>
 			</div>
 		</div>
